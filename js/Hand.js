@@ -1,6 +1,6 @@
 const limit = 21;
 
-class Mano {
+class Hand {
     constructor(numCards) {
         this.numCards = numCards;
         this.cards = [];
