@@ -15,7 +15,7 @@ class Hand {
     addCard(card) {
         this.cards.push(card);
         this.numCards++;
-        this.getPoints();
+        this.points = this.getPoints();
     }
 
     getNumCards() {
@@ -25,9 +25,16 @@ class Hand {
     getPoints() {
         let points = 0;
         this.cards.forEach(card => {
-            points += card.getPoints();
+            points += card.value === 1 ? this.checkAs(points) : card.getPoints();
         });
         return points;
+    }
+
+    checkAs(points) {
+        if (points + 11 > limit) {
+            return 1;
+        }
+        return 11;
     }
 
     toString() {

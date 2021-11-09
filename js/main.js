@@ -1,5 +1,16 @@
+let deck;
 window.onload = function () {
-    const deck = new Deck();
+    deck = new Deck();
     deck.shuffle();
-    console.log(deck.deal());
-};
+
+    startGame();
+}
+
+function startGame() {
+    const playerHand = new Hand();
+
+    playerHand.addCard(deck.deal());
+    playerHand.addCard(deck.deal());
+    console.log(playerHand);
+}
+

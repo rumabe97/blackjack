@@ -31,19 +31,21 @@ class Deck {
                 return rank;
         }
     }
-    shuffle() {
-        let m = this.deck.length, t, i;
 
+    shuffle() {
+        let arrayLen = this.deck.length;
+        let randomIndex;
+        let card;
         // While there remain elements to shuffle…
-        while (m) {
+        while (arrayLen) {
 
             // Pick a remaining element…
-            i = Math.floor(Math.random() * m--);
+            randomIndex = Math.floor(Math.random() * arrayLen--);
 
             // And swap it with the current element.
-            t = this.deck[m];
-            this.deck[m] = this.deck[i];
-            this.deck[i] = t;
+            card = this.deck[arrayLen];
+            this.deck[arrayLen] = this.deck[randomIndex];
+            this.deck[randomIndex] = card;
         }
         console.log(this.deck)
     }

@@ -16,4 +16,13 @@ class Card {
     toString() {
         return this.name;
     }
+
+    //get cardPoints
+    getPoints() {
+        if (this.value > 10) {
+            return 10;
+        } else {
+            return this.value;
+        }
+    }
 }
