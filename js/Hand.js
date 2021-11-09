@@ -1,14 +1,8 @@
 const limit = 21;
 
 class Hand {
-    constructor(numCards) {
+    constructor(numCards = 0) {
         this.numCards = numCards;
-        this.cards = [];
-        this.points = 0;
-    }
-
-    constructor() {
-        this.numCards = 0;
         this.cards = [];
         this.points = 0;
     }

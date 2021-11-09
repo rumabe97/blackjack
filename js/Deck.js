@@ -10,11 +10,27 @@ class Deck {
         this.deck = [];
         for (let suit = 0; suit < 4; suit++) {
             for (let rank = 1; rank <= 13; rank++) {
-                this.deck.push(new Card(suits[suit], rank));
+                const value = rank > 10 ? 10 : rank;
+                const name = this.getName(rank);
+                this.deck.push(new Card(suits[suit], value, `${name} of ${suits[suit]}`));
             }
         }
     }
 
+    getName(rank) {
+        switch (rank) {
+            case 1:
+                return 'Ace';
+            case 11:
+                return 'Jack';
+            case 12:
+                return 'Queen';
+            case 13:
+                return 'King';
+            default:
+                return rank;
+        }
+    }
     shuffle() {
         let m = this.deck.length, t, i;
 
@@ -29,9 +45,10 @@ class Deck {
             this.deck[m] = this.deck[i];
             this.deck[i] = t;
         }
+        console.log(this.deck)
     }
 
     deal() {
-        return this.deck.pop();
+        return this.deck.shift();
     }
 }
