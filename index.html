@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +12,24 @@
     <script src="./js/Main.js"></script>
     <title>BlackJack</title>
 </head>
+
 <body>
-    
+    <div class="playerSelector">
+        <h2 class="playerSelector__title">SELECT THE NUMBER OF PLAYERS</h2>
+        <div class="playerSelector__players" id="playerSelector">
+            <div class="playerSelector__player">
+                <p>Player 1 type:</p>
+                <input type="radio" id="boot" name="player1" value="boot" disabled> <label for="boot">Boot</label>
+                <input type="radio" id="player" name="player1" value="player" disabled checked> <label
+                    for="boot">Player</label>
+            </div>
+        </div>
+        <div class="playerSelector__buttons">
+            <button class="playerSelector__button playerSelector__button-start" type="button"
+                onclick="startGame()">Start Game</button>
+            <button class="playerSelector__button playerSelector__button-add" type="button" onclick="addPlayer()">Add Player</button>
+        </div>
+    </div>
 </body>
+
 </html>
