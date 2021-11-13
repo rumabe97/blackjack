@@ -1,10 +1,11 @@
 const limit = 21;
 
 class Hand {
-    constructor(numCards = 0) {
+    constructor(numCards = 0,type) {
         this.numCards = numCards;
         this.cards = [];
         this.points = 0;
+        this.type = type;
     }
 
     deleteCards() {

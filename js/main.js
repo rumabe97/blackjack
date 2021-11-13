@@ -1,6 +1,7 @@
 let deck;
 let players = [];
 let playerSelector;
+let bank;
 
 window.onload = function () {
     deck = new Deck();
@@ -19,9 +20,9 @@ function printPlayerSelector() {
 function createNodoPlayer() {
     const player = document.createElement("div");
     player.classList.add("playerSelector__player")
-    player.innerHTML = `<P>Player ${playerSelector.childElementCount+1} type:<P>`;
-    player.innerHTML += `<input type="radio" id="boot" name="player${playerSelector.childElementCount+1}" value="boot"> <label for="boot">Boot</label>`;
-    player.innerHTML += `<input type="radio" id="player" name="player${playerSelector.childElementCount+1}" value="player"> <label for="boot">Player</label>`;
+    player.innerHTML = `<P>Player ${playerSelector.childElementCount + 1} type:</P>`;
+    player.innerHTML += `<input type="radio" id="bot" name="player${playerSelector.childElementCount + 1}" value="bot"> <label for="bot">Bot</label>`;
+    player.innerHTML += `<input type="radio" id="player" name="player${playerSelector.childElementCount + 1}" value="player"> <label for="player">Player</label>`;
     return player;
 }
 
@@ -30,16 +31,18 @@ function addPlayer() {
 }
 
 function startGame() {
-    const count = playerSelector.childElementCount;
+    const numPlayers = playerSelector.children;
 
-    for (let i = 0; i < count; i++) {
-        players.push(createPlayer());
+    for (player of numPlayers) {
+        const type = player.children[3].checked ? "player" : "bot";
+        players.push(createPlayer(type));
     }
-    console.log(players);
+    bank = createPlayer('bank');
+    document.getElementById("start").style.display = "none";
 }
 
-function createPlayer() {
-    const playerHand = new Hand();
+function createPlayer(type) {
+    const playerHand = new Hand(0, type);
 
     playerHand.addCard(deck.deal());
     playerHand.addCard(deck.deal());

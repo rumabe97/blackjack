@@ -7,21 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
     <script src="./js/Card.js"></script>
-    <script src="./js/deck.js"></script>
+    <script src="./js/Deck.js"></script>
     <script src="./js/Hand.js"></script>
-    <script src="./js/Main.js"></script>
+    <script src="./js/main.js"></script>
     <title>BlackJack</title>
 </head>
 
 <body>
-    <div class="playerSelector">
+    <div class="playerSelector" id="start">
         <h2 class="playerSelector__title">SELECT THE NUMBER OF PLAYERS</h2>
         <div class="playerSelector__players" id="playerSelector">
             <div class="playerSelector__player">
                 <p>Player 1 type:</p>
-                <input type="radio" id="boot" name="player1" value="boot" disabled> <label for="boot">Boot</label>
-                <input type="radio" id="player" name="player1" value="player" disabled checked> <label
-                    for="boot">Player</label>
+                <input type="radio" id="bot" name="player1" value="bot" disabled> <label for="bot">Bot</label>
+                <input type="radio" id="player" name="player1" value="player1" disabled checked> <label
+                    for="player1">Player</label>
             </div>
         </div>
         <div class="playerSelector__buttons">
