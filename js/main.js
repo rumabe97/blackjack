@@ -13,11 +13,11 @@ window.onload = function () {
 
 function printPlayerSelector() {
     for (let i = 2; i <= 4; i++) {
-        playerSelector.appendChild(createNodoPlayer());
+        playerSelector.appendChild(createNodePlayer());
     }
 }
 
-function createNodoPlayer() {
+function createNodePlayer() {
     const player = document.createElement("div");
     player.classList.add("playerSelector__player")
     player.innerHTML = `<P>Player ${playerSelector.childElementCount + 1} type:</P>`;
@@ -27,7 +27,7 @@ function createNodoPlayer() {
 }
 
 function addPlayer() {
-    playerSelector.appendChild(createNodoPlayer());
+    playerSelector.appendChild(createNodePlayer());
 }
 
 function startGame() {
@@ -39,6 +39,9 @@ function startGame() {
     }
     bank = createPlayer('bank');
     document.getElementById("start").style.display = "none";
+    document.getElementById("bank").style.display = "flex";
+
+    printBackCards();
 }
 
 function createPlayer(type) {
@@ -47,4 +50,39 @@ function createPlayer(type) {
     playerHand.addCard(deck.deal());
     playerHand.addCard(deck.deal());
     return playerHand;
+}
+
+function printBackCards() {
+    const bankCards = document.getElementById("bankCards");
+    bankCards.appendChild(printCard(bank.cards[0]));
+    bankCards.appendChild(printCard('back'));
+}
+
+function printCard(card) {
+    let cardDiv = document.createElement('div');
+    cardDiv.classList.add('bankHand__card');
+    cardDiv.classList.add('zoom');
+
+    let x = 0;
+
+    switch (card?.suit) {
+        case suits[3]:
+            x = "0%";
+            break;
+        case suits[0]:
+            x = "20%";
+            break;
+        case suits[1]:
+            x = "40%";
+            break;
+        case suits[2]:
+            x = "60%";
+            break;
+        default:
+            x = "80%";
+    }
+    const cardValue = card?.value ?? 1;
+    const calc = 8.3333 * (cardValue - 1);
+    cardDiv.style.backgroundPosition = calc + "%" + "" + x;
+    return cardDiv;
 }

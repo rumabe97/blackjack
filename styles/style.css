@@ -146,4 +146,46 @@ html {
   background: #cc2e2e;
   color: #fff;
 }
+
+.bankHand {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 50%;
+  height: 24%;
+  margin-left: auto;
+  margin-right: auto;
+  display: none;
+}
+
+.bankHand__cards {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 100%;
+  height: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.bankHand__card {
+  display: inline-block;
+  width: 130px;
+  height: 210px;
+  z-index: 0;
+  background-image: url("../img/cartas.png");
+  background-size: 1300% 600%;
+  background-repeat: no-repeat;
+}
 /*# sourceMappingURL=style.css.map */
