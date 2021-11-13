@@ -40,8 +40,10 @@ function startGame() {
     bank = createPlayer('bank');
     document.getElementById("start").style.display = "none";
     document.getElementById("bank").style.display = "flex";
+    document.getElementById("players").style.display = "flex";
 
-    printBackCards();
+    printPlayerCards();
+    printBankCards();
 }
 
 function createPlayer(type) {
@@ -52,7 +54,13 @@ function createPlayer(type) {
     return playerHand;
 }
 
-function printBackCards() {
+function printPlayerCards() {
+    const playerCard = document.getElementById("playerCards");
+    playerCard.appendChild(printCard(players[0].cards[0]));
+    playerCard.appendChild(printCard(players[0].cards[1]));
+    
+}
+function printBankCards() {
     const bankCards = document.getElementById("bankCards");
     bankCards.appendChild(printCard(bank.cards[0]));
     bankCards.appendChild(printCard('back'));
@@ -63,7 +71,7 @@ function printCard(card) {
     cardDiv.classList.add('bankHand__card');
     cardDiv.classList.add('zoom');
 
-    let x = 0;
+    let x;
 
     switch (card?.suit) {
         case suits[3]:

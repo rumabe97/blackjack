@@ -6,6 +6,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
+  flex-direction: column;
   font-family: "sans-serif", Verdana, sans-serif;
 }
 
@@ -129,6 +130,37 @@ html {
   height: 24%;
   margin-left: auto;
   margin-right: auto;
+  display: none;
+
+  &__cards {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__card {
+    display: inline-block;
+    width: 130px;
+    height: 210px;
+    z-index: 0;
+    background-image: url("../img/cartas.png");
+    background-size: 1300% 600%;
+    background-repeat: no-repeat;
+  }
+}
+
+.playerHand {
+  flex-direction: column;
+  width: 50%;
+  height: 24%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 0;
+  margin-top: auto;
   display: none;
 
   &__cards {
