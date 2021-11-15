@@ -2,8 +2,10 @@ let deck;
 let players = [];
 let playerSelector;
 let bank;
+let numPlayer = 0;
 
-window.onload = function () {
+window.onload = startGame();
+function startGame() {
     deck = new Deck();
     deck.shuffle();
     playerSelector = document.getElementById("playerSelector");
@@ -27,6 +29,7 @@ function createNodePlayer() {
 }
 
 function addPlayer() {
+    if (playerSelector.childElementCount >= 7) return;
     playerSelector.appendChild(createNodePlayer());
 }
 
@@ -43,7 +46,7 @@ function startGame() {
     document.getElementById("players").style.display = "flex";
 
     printPlayerCards();
-    printBankCards();
+    printBankCardsFirst();
 }
 
 function createPlayer(type) {
@@ -56,14 +59,67 @@ function createPlayer(type) {
 
 function printPlayerCards() {
     const playerCard = document.getElementById("playerCards");
-    playerCard.appendChild(printCard(players[0].cards[0]));
-    playerCard.appendChild(printCard(players[0].cards[1]));
-    
+    playerCard.innerHTML = "";
+    players[numPlayer].cards.forEach(card => {
+        playerCard.appendChild(printCard(card));
+    });
+    document.getElementById('points').innerHTML = `Points : ${players[numPlayer].getPoints()}`;
 }
+
+function addCard() {
+    if (players[numPlayer].getPoints() >= 21) return;
+    players[numPlayer].addCard(deck.deal());
+    if (players[numPlayer].getPoints() > 21) {
+        document.getElementById('info').innerHTML = `You Lose`;
+        document.getElementById('stick').innerHTML = 'Continue';
+    }
+    printPlayerCards();
+}
+
+function stickPlayer() {
+    numPlayer++;
+    if (numPlayer >= players.length) {
+        printBankCards();
+        playBot(bank);
+        return;
+    }
+    printPlayerCards();
+    document.getElementById('stick').innerHTML = players[numPlayer].type === 'bot' ? 'Continue' : "Stick";
+    document.getElementById('stick').disabled = players[numPlayer].type === 'bot' ? true : false;
+    document.getElementById('getCard').disabled = players[numPlayer].type === 'bot' ? true : false;
+
+    if (players[numPlayer].type === 'bot') {
+        playBot(players[numPlayer]);
+    }
+}
+
+function playBot(player) {
+    while (true) {
+        if (player.getPoints() < 17) {
+            player.addCard(deck.deal());
+            player.type === 'bot' ? setTimeout(printPlayerCards, 1000) : setInterval(printBankCards, 1000);
+        } else {
+            document.getElementById('stick').disabled = false;
+            break;
+        }
+    }
+    if (player.type === 'bot') document.getElementById('info').innerHTML = `Player ${numPlayer + 1} finish (${player.getPoints() > 21 ? 'lose' : player.getPoints()}), please press continue`;
+}
+
 function printBankCards() {
+    const bankCard = document.getElementById("bankCards");
+    bankCard.innerHTML = "";
+    bank.cards.forEach(card => {
+        bankCard.appendChild(printCard(card));
+    });
+    document.getElementById('pointsBank').innerHTML = `Points : ${bank.getPoints()}`;
+}
+
+function printBankCardsFirst() {
     const bankCards = document.getElementById("bankCards");
     bankCards.appendChild(printCard(bank.cards[0]));
     bankCards.appendChild(printCard('back'));
+    document.getElementById('pointsBank').innerHTML = `Points : ${bank.getPoints() - bank.cards[1].value}`;
 }
 
 function printCard(card) {

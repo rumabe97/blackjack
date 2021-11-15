@@ -35,23 +35,25 @@
     <div class="bankHand" id="bank">
         <div class="bankHand__cards" id="bankCards">
         </div>
-        <div class="bankHand__score">
-            <!-- <p class="bankHand__score-text">Bank</p>
-            <p class="bankHand__score-number">0</p> -->
-        </div>
+        <p id="pointsBank"></p>
     </div>
 
     <div class="bet">
-        
     </div>
+
     <div class="playerHand" id="players">
-        <div class="playerHand__cards" id="playerCards">
+        <P id="info"></P>
+        <div class="playerHand__actions">
+            <button class="playerSelector__button playerSelector__button-start" type="button" onclick="addCard()" id="getCard">Get
+                Card</button>
+            <p id="points"></p>
+            <button class="playerSelector__button playerSelector__button-add" type="button"
+                onclick="stickPlayer()" id="stick">Stick</button>
         </div>
-        <div class="playerHand__score">
-            <!-- <p class="bankHand__score-text">Bank</p>
-            <p class="bankHand__score-number">0</p> -->
+        <div class="playerHand__cards" id="playerCards">
         </div>
     </div>
 
 </body>
+
 </html>
