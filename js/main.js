@@ -4,8 +4,9 @@ let playerSelector;
 let bank;
 let numPlayer = 0;
 
-window.onload = startGame();
-function startGame() {
+window.onload = start;
+
+function start() {
     deck = new Deck();
     deck.shuffle();
     playerSelector = document.getElementById("playerSelector");
@@ -97,7 +98,7 @@ function playBot(player) {
     while (true) {
         if (player.getPoints() < 17) {
             player.addCard(deck.deal());
-            player.type === 'bot' ? setTimeout(printPlayerCards, 1000) : setInterval(printBankCards, 1000);
+            player.type === 'bot' ? printPlayerCards() : printBankCards();
         } else {
             document.getElementById('stick').disabled = false;
             break;
